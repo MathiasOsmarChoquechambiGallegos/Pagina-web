@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    min-height: 100vh;
+}
+
+.contenedor {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: yellow;
+}
+
+.fondo {
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+}
+
+.login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login button {
+    border-radius: 20%;
+}
