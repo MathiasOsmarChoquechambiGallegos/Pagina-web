@@ -1,20 +1,54 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import './App.css'
-import Login from "./login";
-import Home from "./Home";
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
+import { useState } from "react";
+import './App.css';
+import CreateUser from './components/CreateUser';
+import Login from './components/Login';
+import ListUsers from './components/ListUsers';
+import Busqueda from './components/Busqueda';
 
-export default function App() {
+
+
+function App() {
+  const [user, setUser] = useState(null);
+  const [atraccion, setAtraccion] = useState(null);
+
   return (
-    <Router>
-      <nav>
-        <Link to="/">Inicio</Link>
-        <Link to="/login">Login</Link>
-      </nav>
+    <div className="App">
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router>
-  )
+      <BrowserRouter>
+        <nav>
+              <Link to="/">Home</Link>
+              <Link to="user/create">Create User</Link>
+
+              {user ? (
+                    <div>
+                      <span>{user.name}{user.apellido}!</span>
+                      <button onClick={() => setUser(null)}>Logout</button>
+                      </div>
+                      
+                ) : (
+                    <Link to="user/login">Login</Link>
+                )}
+              {atraccion ? (
+                <div>
+                  <span>{atraccion.atraccion_nombre}!</span>
+                </div>
+              ) : (
+                <Link to="atraccion/search">Buscar Atracción</Link>
+              )}
+
+        </nav>
+        <Routes>
+          <Route index element={<ListUsers />} />
+          <Route path="user/create" element={<CreateUser />}/>
+          <Route path="user/login" element={<Login setUser={setUser} />} />
+          <Route path="atraccion/search" element={<Busqueda setAtraccion={setAtraccion} />} />
+
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
+
+export default App;
+
