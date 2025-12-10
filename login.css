@@ -1,0 +1,121 @@
+/* Fondo general */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.login-logo {
+  width: 100px; /* Ajusta el tamaño del logo */
+}
+
+
+/* Título */
+.login-card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #24292f;
+}
+
+/* Inputs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* mantiene los labels a la izquierda */
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 1rem;
+  margin-left: -100px;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  color: #24292f;
+  text-align: left;
+  width: 100%;          /* asegura alineación uniforme */
+  padding-left: 0.2rem; /* ligero margen estético */
+}
+
+.form-group input {
+  width: 200%;
+  padding: 0.6rem;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  border-color: #0969da;
+  box-shadow: 0 0 0 2px rgba(9, 105, 218, 0.3);
+}
+
+/* Botón */
+.btn-signin {
+  width: 100%; /* mismo ancho que los campos */
+  max-width: 350px;
+  padding: 0.6rem;
+  background-color: #0d897b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+  align-self: center; /* lo centra visualmente */
+}
+
+
+.btn-signin:hover {
+  background-color: #1b1f23;
+}
+
+/* Texto registro */
+.signup-text {
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  color: #57606a;
+}
+
+.signup-text a {
+  color: #0969da;
+  text-decoration: none;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .form-group {
+    margin-left: 0;       /* vuelve normal */
+    max-width: 90%;       /* ancho cómodo */
+    align-items: center;  /* centra todo */
+  }
+
+  .form-group input {
+    width: 100%;          /* ya no 200% */
+  }
+
+  .btn-signin {
+    max-width: 90%;       /* que no se pase */
+  }
+
+  .login-card h2 {
+    font-size: 1.1rem;
+  }
+  
+  .login-logo {
+    width: 80px; /* logo más chiquito */
+  }
+}

@@ -20,8 +20,7 @@ export default function ListUsers() {
     }, []);
 
     function getUser(){
-        axios.get(`http://localhost:80/api/user/${id}`).then(function(response){
-            console.log(response.data);
+        axios.get(`https://unconsciously-ungovernmental-leon.ngrok-free.dev/api/user/${id}`).then(function(response){
             setInputs(response.data);
         });
     }
@@ -34,11 +33,9 @@ export default function ListUsers() {
     const handleSubmit = (event) => {
         event.preventDefault();
     
-        axios.put(`http://localhost:80/api/user/${id}/edit`, inputs).then(function(response){
-            console.log(response.data);
+        axios.put(`https://unconsciously-ungovernmental-leon.ngrok-free.dev/api/user/${id}/edit`, inputs).then(function(response){
             navigate('/');
         });
-        console.log(inputs);
     
     }; 
     return (

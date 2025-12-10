@@ -1,11 +1,13 @@
 import { useState } from "react"; 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import './registro.css';
 
 export default function ListUsers() {
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({});
+    const [alert, setAlert] = useState(null);
     
 
     const handleChange = (event) => {
@@ -15,71 +17,68 @@ export default function ListUsers() {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(inputs);
     
-        axios.post('http://localhost:80/api/users/save', inputs).then(function(response){
-            console.log(response.data);
-            navigate('/');
+        axios.post('https://unconsciously-ungovernmental-leon.ngrok-free.dev/api/users/save', inputs).then(function(response){
+
+            if (response.data.status === 1) {
+                setAlert({ type: "success", message: response.data.message });
+                // redirect after short delay
+                setTimeout(() => navigate('/user/login'), 1500);
+            } else {
+                setAlert({ type: "error", message: response.data.message });
+            }
         });
-        console.log(inputs);
     
     }; 
     return (
-        <div>
-            <h1>Create User</h1>
-            <form onSubmit={handleSubmit}>
-                <table cellSpacing="10">
-                    <tbody>
-                        <tr>
-                            <th>
-                                <label>Name: </label>
-                            </th>
-                            <td>
-                                <input type="text" name="name" onChange={handleChange}/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label>Apellido: </label>
-                            </th>
-                            <td>
-                                <input type="text" name="apellido" onChange={handleChange}/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label>Email: </label>
-                            </th>
-                            <td>
-                                <input type="text" name="email" onChange={handleChange}/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label>Constrasena: </label>
-                            </th>
-                            <td>
-                                <input type="text" name="contrasena" onChange={handleChange}/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <label>Pais: </label>
-                            </th>
-                            <td>
-                                <input type="text" name="pais" onChange={handleChange}/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan="2" align="right">
-                                <button type="submit">Save</button> 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div className="register-page">
+            <div className="register-card">
+                <h2>Crea tu cuenta</h2>
+                {/* 🔹 Show alert if exists */}
+                {alert && (
+                    <div style={{
+                        color: alert.type === "error" ? "red" : "green",
+                        marginBottom: "15px",
+                        fontWeight: "bold"
+                    }}>
+                        {alert.message}
+                    </div>
+                )}
+        <form onSubmit={handleSubmit}>
+                    <div className="register-group">
+                        <label>Nombre:</label>
+                        <input type="text" name="name" onChange={handleChange} placeholder="Ingresa tu nombre" />
+                    </div>
+                    
+                    <div className="register-group">
+                        <label>Apellido:</label>
+                        <input type="text" name="apellido" onChange={handleChange} placeholder="Ingresa tu apellido" />
+                    </div>
 
-                
-            </form>
+                    <div className="register-group">
+                        <label>Correo electrónico:</label><input
+                            type="email"
+                            name="email"
+                            onChange={handleChange}
+                            pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
+                            title="Ingresa un correo válido, como ejemplo@correo.com"
+                            placeholder="Ingresa tu correo"
+                        />
+                    </div>
+                    
+                    <div className="register-group">
+                        <label>Contraseña:</label>
+                        <input type="password" name="contrasena" onChange={handleChange} placeholder="Crea una contraseña" />
+                    </div>
+
+                    <div className="register-group">
+                        <label>Pais:</label>
+                        <input type="text" name="pais" onChange={handleChange} placeholder="Cual es tu pais" />
+                    </div>
+                    <button type="submit" className="btn-register">Crear cuenta</button>
+            
+                </form>
+            </div>
         </div>
     )
 }

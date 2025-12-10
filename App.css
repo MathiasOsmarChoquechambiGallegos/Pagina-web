@@ -2,12 +2,10 @@ body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-        center/cover fixed url('https://images.unsplash.com/photo-1526392060635-9d6019884377?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80');
+    background: #fff;
     color: #fff;
 }
 
-/* Header fijo */
 header {
     background-color: #26A69A;
     display: flex;
@@ -22,7 +20,6 @@ header {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Botón menú */
 .btn-menu {
     text-decoration: none;
     color: white;
@@ -46,16 +43,30 @@ header {
     font-size: 1.5rem;
 }
 
-/* Botón login */
 .btn-login {
+    text-decoration: none;
     color: white;
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 5px;
+    align-items: center;
     background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+    border: 0;
+    border-radius: 8px;
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    justify-content: center;
+    display: flex;
     font-size: 1rem;
-    cursor: pointer;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 12px;
     text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
     transition: all 0.3s;
 }
 
@@ -72,7 +83,7 @@ aside {
     padding-top: 70px; 
     position: fixed;
     top: 0;
-    left: -250px;
+    left: -250px; /* Oculto por defecto */
     bottom: 0;
     z-index: 5;
     transition: left 0.3s ease;
@@ -80,7 +91,7 @@ aside {
 }
 
 aside.active {
-    left: 0;
+    left: 0; /* Visible cuando está activo */
 }
 
 aside nav ul {
@@ -106,7 +117,7 @@ aside nav ul li a:hover {
     background: rgba(255, 179, 0, 0.2);
 }
 
-/* Overlay */
+/* Overlay para cuando el menú está abierto */
 .overlay {
     display: none;
     position: fixed;
@@ -123,74 +134,158 @@ aside nav ul li a:hover {
 }
 
 main {
-    margin-left: 0;
-    padding: 100px 20px 20px 20px; 
-    transition: margin-left 0.3s ease;
+  margin-left: 0;
+  padding: 0px 0px 0px 0px;
+  transition: margin-left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;   /* para que ocupe todo */
+  box-sizing: border-box;
+}
+
+main.menu-active {
+    margin-left: 250px;
 }
 
 /* Contenido principal */
 .hero {
-    text-align: center;
-    padding: 2rem 1rem;
-    max-width: 800px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* centra vertical */
+  align-items: center;       /* centra horizontal */
+  text-align: center;
+  height: 100vh;             /* ocupa toda la pantalla inicial */
+  width: 100%;
+  padding: 10px 1rem;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('./components/imagenes_f/principal.jpeg')
+    center/cover no-repeat;
+  color: white;
+  position: relative;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
 }
 
 .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2.5rem;
-    line-height: 1.6;
+  font-size: 1.3rem;
+  max-width: 800px;
+  margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
 .explore-btn {
-    background-color: #FFB300;
-    color: #1A3E21;
-    border: none;
-    padding: 1rem 2.5rem;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s;
+  background-color: #FFB300;
+  color: #000000c0;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none; 
 }
 
 .explore-btn:hover {
-    background-color: #ffa000;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #ffa000;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* Sección de contenido */
+/* Media queries para responsividad */
+@media (min-width: 992px) {
+    .btn-menu {
+        display: none;
+    }
+
+    aside {
+        left: 0;
+    }
+
+    main {
+        margin-left: 0;   /* que por defecto quede centrado */
+    }
+
+    main.menu-active {
+        margin-left: 250px; /* solo se mueve cuando está activo */
+    }
+
+    .overlay {
+        display: none !important;
+    }
+}
+
+/* Estilos para las secciones de contenido */
 .content-section {
-    margin: 3rem auto;
+    margin-bottom: 3rem;
     background: rgba(255, 255, 255, 0.1);
     padding: 2rem;
     border-radius: 10px;
     backdrop-filter: blur(5px);
-    max-width: 800px;
-
-    display: flex;
-    flex-direction: column; /* Siempre columna */
-    align-items: center;
-    text-align: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.content-section h2, 
-.content-section p {
-    margin: 0 0 1rem 0;
+.content-section h2 {
+    color: #000000;
+    margin-top: 0;
 }
 
-/* Imagen debajo del texto */
 .content-section img {
     max-width: 100%;
     border-radius: 8px;
     margin-top: 1rem;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto 3rem auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  text-align: left;  /* para que el texto no quede raro centrado */
+}
+
+main.home {
+  padding-top: 0px; /* el home no tiene espacio */
+}
+
+
+main.profile,
+main.explorar {
+  padding-top: 150px; /* deja espacio debajo del header fijo */
+}
+
+/* --- Corrige diseño para página Ciudad --- */
+main.ciudad {
+  display: block !important;
+  text-align: left !important;
+  align-items: stretch !important;
+  background: #fff !important;
+  padding-top: 60px; /* espacio bajo el header fijo */
+}
+
+/* Evita fondo borroso en Ciudad */
+main.ciudad .ciudad-container {
+  background: #fff !important;
+  backdrop-filter: none !important;
+}
+/* Sección de contenido */
+
+.content-section p {
+    margin: 0 0 1rem 0;
 }
 
 /* Responsivo */
@@ -204,4 +299,210 @@ main {
 @media (max-width: 991px) {
     .btn-menu { display: flex; }
     .hero h1 { font-size: 2rem; }
+}
+/* =========================
+   🎢 ReelAtracciones
+========================= */
+/* ===== 🎞️ Contenedor principal ===== */
+.reel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* separa flechas del reel */
+  max-width: 95vw;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+/* ===== ⬅️➡️ Flechas ===== */
+.arrow {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 2.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.arrow:hover {
+  transform: scale(1.2);
+}
+
+/* ===== 🎞️ Reel ===== */
+.reel {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 20px;
+  margin: 0;
+  max-width: 85vw; /* deja espacio para las flechas */
+  box-sizing: border-box;
+  
+}
+
+.reel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.reel::-webkit-scrollbar-thumb {
+  background-color: #d1d0d0;
+  border-radius: 10px;
+}
+
+/* ===== 🖼️ Items ===== */
+.reel-item {
+  min-width: 200px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.reel-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.reel-item img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 15px 15px 0 0;
+}
+
+.reel-item p {
+  font-size: 1em;
+  font-weight: 500;
+  color: #333;
+  margin: 8px 0 12px;
+}
+
+/* ===== 📱 Responsividad ===== */
+@media (max-width: 768px) {
+  .reel-container {
+    gap: 8px;
+  }
+
+  .arrow {
+    font-size: 1.8rem;
+  }
+
+  .reel {
+    max-width: 90vw;
+  }
+
+  .reel-item {
+    min-width: 160px;
+  }
+
+  .reel-item img {
+    height: 110px;
+  }
+}
+
+.sugerencias-lista {
+  color: black;
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  width: 100%;
+  max-width: 300px;
+  max-height: 180px;
+  overflow-y: auto;
+  z-index: 100;
+  list-style: none;
+  margin-top: 5px;
+  padding: 0;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sugerencias-lista li {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.sugerencias-lista li:hover {
+  background-color: #f5f5f5;
+}
+
+/* 🚫 Corrige scroll lateral en toda la app */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ✅ Asegura que aside y overlay no empujen contenido */
+aside,
+.overlay {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 🧱 main no debe usar 100vw — solo 100% */
+main {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+main, .home, .explora {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: 1.5rem;
+  padding-top: 0.8rem;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+.logo a {
+  text-decoration: none;  /* remove underline */
+  color: inherit;         /* keep same color as parent text */
+}
+
+.logo a:visited,
+.logo a:hover,
+.logo a:active {
+  color: inherit;         /* prevents color change on hover/visited */
+  text-decoration: none;  /* ensures underline doesn’t reappear */
+}
+
+
+.arrow-left-2,
+.arrow-right-2 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+  z-index: 10000;
+  user-select: none;
+  padding: 4px;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.arrow-left-2 {
+  left: 5px;
+}
+
+.arrow-right-2 {
+  right: 5px;
+}
+
+.arrow-left-2:hover,
+.arrow-right-2:hover {
+  opacity: 0.6;
 }

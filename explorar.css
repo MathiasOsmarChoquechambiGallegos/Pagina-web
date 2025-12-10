@@ -1,0 +1,436 @@
+.explorar-container {
+  color: #24292f;
+  background-color: #f9f9f9;
+}
+
+/* --- HERO --- */ 
+.explorar-hero { 
+  background-image: url("./imagenes_f/explorar.jpeg"); 
+  background-size: cover; 
+  background-position: center; 
+  text-align: left; 
+  color: white; 
+  padding: 10rem 0rem;             /* ocupa toda la pantalla inicial */
+  position: relative; 
+  margin-top: -90px; /* o ajusta según el alto del header */
+  z-index: 0;
+
+}
+
+.explorar-hero::after { 
+  content: ""; 
+  position: absolute; 
+  inset: 0; 
+  background: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  z-index: 1; 
+}
+
+.explorar-hero h1 { 
+  font-size: 2.5rem;
+  position: relative;
+  font-family: "Arial", sans-serif;
+  font-style: italic;
+  z-index: 2; 
+  padding-left: 15%;
+}
+.explorar-hero p { 
+  font-size: 3rem;
+  position: relative;
+  font-family: "Calibri", sans-serif;
+  z-index: 2; 
+  padding-left: 15%;
+}
+
+/* --- CATEGORÍAS (DOS COLUMNAS) --- */ 
+.categoria { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: flex-start; 
+  gap: 2rem; 
+  padding: 4rem 7%; 
+}
+
+.texto { 
+  flex: 0.6; 
+}
+
+.texto h2 { 
+  font-size: 1rem; 
+  margin-bottom: 1rem; 
+}
+
+.texto p { 
+  line-height: 1.6; 
+  max-width: 500px; 
+  margin-bottom: 1.5rem; 
+}
+
+.breadcrumb {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.titulo-seccion {
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.subtitulo {
+  font-size: 1.1rem;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.categoria {
+  margin-bottom: 3rem;
+}
+
+.categoria h2 {
+  font-size: 3.2rem;
+  color: #111;
+}
+
+.categoria p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  line-height: 1.5;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.grid-destinos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  color: #fff;
+  padding: 0.5rem;
+}
+
+.overlay button {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 20px;
+  padding: 0.3rem 1rem;
+  margin-top: 0.3rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* --- COLLAGE DE IMÁGENES --- */
+.collage {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* mismo diseño grande */
+  grid-template-rows: 250px 250px;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.collage-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.collage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.collage-item:hover img {
+  transform: scale(1.05);
+}
+
+/* imágenes altas conservan diseño original */
+.img1 {
+  grid-row: span 2;
+}
+
+.img4 {
+  grid-row: span 2;
+}
+
+/* --- Overlay oscuro y texto --- */
+.collage-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 60%);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 1rem;
+  color: #fff;
+  pointer-events: none;
+}
+
+.collage-overlay h4 {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 550;
+  letter-spacing: 0.5px;
+}
+
+/* 📱 Ajustes responsivos — evita deformaciones */
+@media (max-width: 1024px) {
+  .collage {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .collage {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .collage-item,
+  .collage img {
+    height: 250px;
+    min-width: 100px;
+  }
+
+  .img1,
+  .img4 {
+    grid-row: auto;
+  }
+}
+
+/* --- BUSCADOR HERO --- */
+.explorar-buscador {
+  position: relative;
+  top: 10%;
+  left: 27%;
+  width: 40%;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.explorar-buscador:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.explorar-buscador input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: black;
+  font-size: 1rem;
+  outline: none;
+  padding: 0.5rem;
+  font-family: "Calibri", sans-serif;
+  z-index: 2; 
+}
+
+.explorar-buscador input::placeholder {
+  color: black;
+}
+
+.explorar-buscador button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding-left: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.explorar-buscador button:hover {
+  transform: scale(1.1);
+}
+.explorar-hero {
+  position: relative;
+  z-index: 0;
+}
+
+.explorar-buscador {
+  position: relative;
+  z-index: 5; /* 👈 más alto que el overlay */
+}
+
+.sugerencias-lista {
+  position: absolute; /* 🔹 Posiciona debajo del input */
+  top: 100%; /* Justo bajo el buscador */
+  left: 0;
+  width: 100%;
+  margin-top: 0.3rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  list-style: none;
+  padding: 0;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Elementos individuales */
+.sugerencias-lista li {
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.sugerencias-lista li:hover {
+  background: #f0f0f0;
+}
+@media (max-width: 1024px) {
+  .explorar-hero h1 {
+    font-size: 2rem;
+    padding-left: 10%;
+  }
+
+  .explorar-hero p {
+    font-size: 1.8rem;
+    padding-left: 10%;
+  }
+
+  .texto h2 {
+    font-size: 2.2rem;
+  }
+
+  .texto p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .explorar-buscador {
+    left: 10%;
+    width: 80%;
+    padding-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .explorar-hero {
+    padding: 10rem 1rem;
+    text-align: center;
+  }
+
+  .explorar-hero h1 {
+    font-size: 1.6rem;
+    padding-left: 0;
+  }
+
+  .explorar-hero p {
+    font-size: 1.2rem;
+    padding-left: 0;
+  }
+
+  .categoria {
+    flex-direction: column;
+    padding: 2rem 5%;
+  }
+
+  .texto {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .texto h2 {
+    font-size: 1.8rem;
+  }
+
+  .texto p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .explorar-buscador {
+    left: 5%;
+    width: 90%;
+    padding-top: 10px;
+  }
+
+  .sugerencias-lista {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .explorar-hero h1 {
+    font-size: 1.4rem;
+  }
+
+  .explorar-hero p {
+    font-size: 1rem;
+  }
+
+  .texto h2 {
+    font-size: 1.5rem;
+  }
+
+  .texto p {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 768px) {
+  .collage {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto; /* importante */
+  }
+
+  .collage-item {
+    height: auto; /* altura automática según contenido */
+  }
+
+  .collage img {
+    width: 100%;
+    height: auto; /* mantiene proporción y no se ensancha */
+  }
+
+  .img1,
+  .img4 {
+    grid-row: auto; /* ya no ocupa 2 filas */
+  }
+}
